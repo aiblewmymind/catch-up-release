@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download Catch-up</title>
+<meta name="description" content="Catch-up by Amplifiers turns your WhatsApp groups into short catch-up cards, on your Mac.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='100 100 824 824'%3E%3Crect x='100' y='100' width='824' height='824' rx='185' fill='%233346c9'/%3E%3Cpath d='M512 250c-152 0-264 98-264 222 0 64 30 121 79 161l-23 106 113-57c30 9 62 14 95 14 152 0 264-98 264-222S664 250 512 250z' fill='%23fff'/%3E%3C/svg%3E">
+<!-- Source: aiblewmymind/catch-up-code site/index.html. Published to aiblewmymind/catch-up-release (GitHub Pages). -->
+<style>
+  :root {
+    --ground: #eef0f3; --paper: #ffffff; --ink: #1f2329; --graphite: #69707d; --rule: #e4e7ec;
+    --action: #3346c9; --action-ink: #ffffff; --marker: #ffe27a;
+    --ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+    --read: Charter, "New York", "Iowan Old Style", Georgia, serif;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #25272c; --paper: #18191c; --ink: #eceef1; --graphite: #9a9fa9; --rule: #2e3137;
+      --action: #8ea2ff; --action-ink: #0e1222; --marker: rgba(255, 214, 90, 0.32);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #25272c; --paper: #18191c; --ink: #eceef1; --graphite: #9a9fa9; --rule: #2e3137;
+    --action: #8ea2ff; --action-ink: #0e1222; --marker: rgba(255, 214, 90, 0.32);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: var(--ground); color: var(--ink); font: 15px/1.55 var(--ui);
+    display: flex; align-items: center; justify-content: center; padding: 48px 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    width: 100%; max-width: 560px; background: var(--paper); border: 1px solid var(--rule); border-radius: 16px;
+    padding: 40px 36px 32px;
+  }
+  .icon { width: 72px; height: 72px; display: block; margin-bottom: 20px; }
+  h1 { font: 600 30px/1.2 var(--read); margin: 0 0 4px; letter-spacing: -.01em; }
+  .by { color: var(--graphite); font-size: 13px; margin: 0 0 18px; }
+  .lead { font: 17px/1.5 var(--read); margin: 0 0 28px; }
+  mark { background: linear-gradient(transparent 55%, var(--marker) 55%); color: inherit; padding: 0 1px; }
+  .choices { display: grid; gap: 12px; }
+  .choice {
+    display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 12px; text-decoration: none;
+    border: 1px solid var(--rule); color: var(--ink); background: var(--paper);
+    transition: border-color .15s, transform .15s;
+  }
+  .choice:hover { border-color: var(--action); }
+  .choice:active { transform: scale(.99); }
+  .choice.primary { background: var(--action); border-color: var(--action); color: var(--action-ink); }
+  .choice.primary:hover { filter: brightness(1.08); }
+  .choice svg { flex: none; }
+  .choice span { min-width: 0; }
+  .choice b { display: block; font-size: 16px; font-weight: 600; }
+  .choice small { display: block; font-size: 13px; opacity: .78; }
+  .choice .arrow { margin-left: auto; opacity: .7; }
+  .which { margin: 18px 0 0; font-size: 13px; color: var(--graphite); }
+  .which b { color: var(--ink); font-weight: 600; }
+  h2 { font-size: 13px; font-weight: 600; margin: 32px 0 10px; padding-top: 24px; border-top: 1px solid var(--rule); }
+  ol { margin: 0; padding-left: 20px; color: var(--graphite); font-size: 14px; }
+  ol li { margin: 4px 0; }
+  ol b { color: var(--ink); font-weight: 600; }
+  footer { margin-top: 28px; font-size: 12px; color: var(--graphite); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  @media (max-width: 480px) { main { padding: 28px 20px 24px; } h1 { font-size: 26px; } }
+</style>
+</head>
+<body>
+<main>
+  <svg class="icon" viewBox="100 100 824 824" aria-hidden="true">
+    <defs>
+      <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#4357e0"/><stop offset="1" stop-color="#2a39a8"/>
+      </linearGradient>
+    </defs>
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg)"/>
+    <path d="M512 250c-152 0-264 98-264 222 0 64 30 121 79 161l-23 106 113-57c30 9 62 14 95 14 152 0 264-98 264-222S664 250 512 250z" fill="#fff"/>
+    <path d="M362 382 L668 372 L672 446 L358 452 Z" fill="#ffe27a"/>
+    <rect x="384" y="396" width="256" height="34" rx="17" fill="#1f2329"/>
+    <rect x="384" y="482" width="190" height="34" rx="17" fill="#1f2329" opacity=".3"/>
+    <rect x="384" y="560" width="226" height="34" rx="17" fill="#1f2329" opacity=".18"/>
+  </svg>
+  <h1>Catch-up</h1>
+  <p class="by">by Amplifiers · for Mac</p>
+  <p class="lead">
+    Your WhatsApp groups, caught up for you: one short card per group with what was said, what was decided, and
+    <mark>anything waiting on you</mark>.
+  </p>
+
+  <div class="choices">
+    <a class="choice primary" href="https://github.com/aiblewmymind/catch-up-release/releases/latest/download/Catch-up-arm64.dmg">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+      <span><b>Catch-up for Mac with Apple Silicon</b><small>M1, M2, M3, M4 and later</small></span>
+    </a>
+    <a class="choice" href="https://github.com/aiblewmymind/catch-up-release/releases/latest/download/Catch-up-x64.dmg">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+      <span><b>Catch-up for Mac with Intel</b><small>Older Macs, mostly from before 2021</small></span>
+    </a>
+  </div>
+  <p class="which">
+    Not sure? Open the Apple menu  → <b>About This Mac</b>. If it says <b>Chip: Apple M…</b>, pick Apple Silicon.
+    If it says <b>Processor: Intel</b>, pick Intel.
+  </p>
+
+  <h2>Installing</h2>
+  <ol>
+    <li>Open the downloaded file and drag <b>Catch-up</b> into <b>Applications</b>.</li>
+    <li>Open Catch-up from Applications and follow the setup: link WhatsApp, add your Anthropic API key, pick your groups.</li>
+    <li>That’s it. Catch-up updates itself when a new version comes out.</li>
+  </ol>
+
+  <footer>
+    <span data-version>Needs macOS 13 Ventura or later</span>
+    <span>Runs on your Mac. Only reads; never posts in your groups.</span>
+  </footer>
+</main>
+<script>
+  // Shows the current version; the page works without it.
+  fetch('https://api.github.com/repos/aiblewmymind/catch-up-release/releases/latest')
+    .then((r) => (r.ok ? r.json() : null))
+    .then((rel) => {
+      if (!rel || !rel.tag_name) return;
+      const date = new Date(rel.published_at).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' });
+      document.querySelector('[data-version]').textContent = `Version ${rel.tag_name.replace(/^v/, '')} · ${date} · macOS 13 or later`;
+    })
+    .catch(() => {});
+</script>
+</body>
+</html>
