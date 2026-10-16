@@ -1,10 +1,5 @@
-# Catch-up by Amplifiers — releases
+# Catch-up by Amplifiers
 
-Catch-up turns your WhatsApp groups into short catch-up cards, on your Mac.
+**Download: https://aiblewmymind.github.io/catch-up-release/**
 
-**Download the latest version** from [Releases](https://github.com/aiblewmymind/catch-up-release/releases/latest):
-
-- Apple Silicon (M1 and later): `Catch-up-<version>-arm64.dmg`
-- Intel: `Catch-up-<version>-x64.dmg`
-
-Open the DMG and drag Catch-up into Applications. Once installed, Catch-up updates itself.
+This repo only hosts Catch-up's releases and its download page. The app updates itself from here.
